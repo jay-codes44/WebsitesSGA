@@ -3,157 +3,816 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Symbieat - Canteen Menu</title>
+
+    <title>Symbieat | Symbiosis Canteen</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
-        <div class="logo">🍴 Symbieat</div>
-        <p>Symbiosis Canteen</p>
-    </header>
+<header class="navbar">
 
-    <section class="hero">
-        <h1>Welcome to Symbieat</h1>
-        <p>Fresh • Delicious • Affordable</p>
-    </section>
+    <div class="logo">
+        <span>🍴</span>
+        <div>
+            <h2>Symbieat</h2>
+            <small>Symbiosis Canteen</small>
+        </div>
+    </div>
 
-    <section class="menu">
-        <h2>Our Menu</h2>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+    </nav>
 
-        <div class="category">
-            <h3>🥪 Snacks</h3>
+    <button class="menu-btn" onclick="document.querySelector('#menu').scrollIntoView({behavior:'smooth'})">
+        Explore Menu
+    </button>
 
-            <div class="menu-container">
+</header>
 
-                <div class="card">
-                    <div class="food-info">
-                        <h4>Veg Sandwich</h4>
-                        <p>🌱 Veg • 🌶 Mild</p>
-                        <span class="available">Available</span>
-                    </div>
+
+<main>
+
+<section class="hero" id="home">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <span class="hero-tag">🍽️ CAMPUS FOOD • MADE FOR STUDENTS</span>
+
+        <h1>
+            Good food.
+            <br>
+            <span>Good mood.</span>
+        </h1>
+
+        <p>
+            Discover fresh, delicious and affordable food
+            right inside your campus.
+        </p>
+
+        <div class="hero-buttons">
+            <button class="primary-btn" onclick="document.querySelector('#menu').scrollIntoView({behavior:'smooth'})">
+                Explore today's menu
+                <span>→</span>
+            </button>
+
+            <button class="secondary-btn" onclick="showInfo()">
+                Why Symbieat?
+            </button>
+        </div>
+
+    </div>
+
+    <div class="hero-food">
+
+        <div class="floating-card card-one">
+            <span>🌱</span>
+            <div>
+                <strong>Fresh</strong>
+                <small>Everyday</small>
+            </div>
+        </div>
+
+        <div class="floating-card card-two">
+            <span>₹</span>
+            <div>
+                <strong>Student</strong>
+                <small>Friendly prices</small>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="intro" id="about">
+
+    <div>
+        <span class="section-label">SYMBIEAT EXPERIENCE</span>
+
+        <h2>
+            Something for
+            <span>everyone.</span>
+        </h2>
+    </div>
+
+    <p>
+        From a quick samosa between lectures to a filling biryani
+        after class, Symbieat brings together different tastes,
+        cuisines and food preferences in one place.
+    </p>
+
+</section>
+
+
+<section class="menu-section" id="menu">
+
+    <div class="menu-heading">
+
+        <div>
+            <span class="section-label">WHAT'S COOKING</span>
+            <h2>Explore the menu</h2>
+        </div>
+
+        <div class="search-box">
+            <span>⌕</span>
+            <input
+                type="text"
+                id="search"
+                placeholder="Search food..."
+                onkeyup="searchFood()"
+            >
+        </div>
+
+    </div>
+
+
+    <div class="categories">
+
+        <button class="category-btn active" onclick="filterCategory('all', this)">
+            All
+        </button>
+
+        <button class="category-btn" onclick="filterCategory('snacks', this)">
+            🥪 Snacks
+        </button>
+
+        <button class="category-btn" onclick="filterCategory('main', this)">
+            🍛 Main Course
+        </button>
+
+        <button class="category-btn" onclick="filterCategory('breakfast', this)">
+            🍳 Breakfast
+        </button>
+
+        <button class="category-btn" onclick="filterCategory('drinks', this)">
+            🥤 Drinks
+        </button>
+
+    </div>
+
+
+    <div class="food-grid">
+
+
+        <article
+            class="food-card"
+            data-category="snacks"
+            data-name="Veg Sandwich"
+            onclick="openFood(
+                'Veg Sandwich',
+                '🥪',
+                '₹60',
+                'Fresh vegetables layered inside soft toasted bread with a light, creamy spread.',
+                '🌱 Vegetarian',
+                '🌶 Mild',
+                'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=85'
+            )"
+        >
+
+            <div class="food-image">
+                <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=900&q=85" alt="Veg Sandwich">
+                <span class="veg-dot"></span>
+            </div>
+
+            <div class="food-content">
+
+                <div class="food-top">
+                    <span class="food-category">SNACK</span>
                     <strong>₹60</strong>
                 </div>
 
-                <div class="card">
-                    <div class="food-info">
-                        <h4>Paneer Roll</h4>
-                        <p>🌱 Veg • 🌶 Medium</p>
-                        <span class="available">Available</span>
-                    </div>
+                <h3>Veg Sandwich</h3>
+
+                <p>
+                    Fresh vegetables & toasted bread
+                </p>
+
+                <div class="food-bottom">
+                    <span>🌱 Veg</span>
+                    <span>🌶 Mild</span>
+                    <span class="arrow">↗</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article
+            class="food-card"
+            data-category="snacks"
+            data-name="Paneer Roll"
+            onclick="openFood(
+                'Paneer Roll',
+                '🌯',
+                '₹90',
+                'Soft roti wrapped around spicy paneer, fresh vegetables and a delicious creamy sauce.',
+                '🌱 Vegetarian',
+                '🌶 Medium',
+                'https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=900&q=85'
+            )"
+        >
+
+            <div class="food-image">
+                <img src="https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=900&q=85" alt="Paneer Roll">
+                <span class="veg-dot"></span>
+            </div>
+
+            <div class="food-content">
+
+                <div class="food-top">
+                    <span class="food-category">SNACK</span>
                     <strong>₹90</strong>
                 </div>
 
-                <div class="card">
-                    <div class="food-info">
-                        <h4>Chicken Roll</h4>
-                        <p>🍗 Non-Veg • 🌶 Medium</p>
-                        <span class="available">Available</span>
-                    </div>
+                <h3>Paneer Roll</h3>
+
+                <p>
+                    Spiced paneer wrapped in soft roti
+                </p>
+
+                <div class="food-bottom">
+                    <span>🌱 Veg</span>
+                    <span>🌶 Medium</span>
+                    <span class="arrow">↗</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article
+            class="food-card"
+            data-category="snacks"
+            data-name="Chicken Roll"
+            onclick="openFood(
+                'Chicken Roll',
+                '🌯',
+                '₹110',
+                'Juicy seasoned chicken with crunchy vegetables wrapped in a warm soft roll.',
+                '🍗 Non-Veg',
+                '🌶 Medium',
+                'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=900&q=85'
+            )"
+        >
+
+            <div class="food-image">
+                <img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=900&q=85" alt="Chicken Roll">
+                <span class="nonveg-dot"></span>
+            </div>
+
+            <div class="food-content">
+
+                <div class="food-top">
+                    <span class="food-category">SNACK</span>
                     <strong>₹110</strong>
                 </div>
 
-                <div class="card">
-                    <div class="food-info">
-                        <h4>Samosa</h4>
-                        <p>🌱 Veg • 🌶 Medium</p>
-                        <span class="available">Available</span>
-                    </div>
+                <h3>Chicken Roll</h3>
+
+                <p>
+                    Seasoned chicken with fresh vegetables
+                </p>
+
+                <div class="food-bottom">
+                    <span>🍗 Non-Veg</span>
+                    <span>🌶 Medium</span>
+                    <span class="arrow">↗</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article
+            class="food-card"
+            data-category="snacks"
+            data-name="Samosa"
+            onclick="openFood(
+                'Samosa',
+                '🥟',
+                '₹25',
+                'Crispy golden pastry filled with a delicious spiced potato mixture.',
+                '🌱 Vegetarian',
+                '🌶 Medium',
+                'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85'
+            )"
+        >
+
+            <div class="food-image">
+                <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85" alt="Samosa">
+                <span class="veg-dot"></span>
+            </div>
+
+            <div class="food-content">
+
+                <div class="food-top">
+                    <span class="food-category">SNACK</span>
                     <strong>₹25</strong>
                 </div>
 
+                <h3>Samosa</h3>
+
+                <p>
+                    Crispy pastry with spiced potato filling
+                </p>
+
+                <div class="food-bottom">
+                    <span>🌱 Veg</span>
+                    <span>🌶 Medium</span>
+                    <span class="arrow">↗</span>
+                </div>
+
             </div>
-        </div>
+
+        </article>
 
 
-        <div class="category">
-            <h3>🍛 Main Course</h3>
+        <article
+            class="food-card"
+            data-category="main"
+            data-name="Veg Biryani"
+            onclick="openFood(
+                'Veg Biryani',
+                '🍛',
+                '₹120',
+                'Aromatic basmati rice cooked with vegetables, herbs and traditional Indian spices.',
+                '🌱 Vegetarian',
+                '🌶 Spicy',
+                'https://images.unsplash.com/photo-1599043513900-ed6fe01d3833?auto=format&fit=crop&w=900&q=85'
+            )"
+        >
 
-            <div class="menu-container">
+            <div class="food-image">
+                <img src="https://images.unsplash.com/photo-1599043513900-ed6fe01d3833?auto=format&fit=crop&w=900&q=85" alt="Veg Biryani">
+                <span class="veg-dot"></span>
+            </div>
 
-                <div class="card">
-                    <div class="food-info">
-                        <h4>Veg Biryani</h4>
-                        <p>🌱 Veg • 🌶 Spicy</p>
-                        <span class="available">Available</span>
-                    </div>
+            <div class="food-content">
+
+                <div class="food-top">
+                    <span class="food-category">MAIN COURSE</span>
                     <strong>₹120</strong>
                 </div>
 
-                <div class="card">
-                    <div class="food-info">
-                        <h4>Chicken Biryani</h4>
-                        <p>🍗 Non-Veg • 🌶 Spicy</p>
-                        <span class="available">Available</span>
-                    </div>
+                <h3>Veg Biryani</h3>
+
+                <p>
+                    Aromatic rice with vegetables & spices
+                </p>
+
+                <div class="food-bottom">
+                    <span>🌱 Veg</span>
+                    <span>🌶 Spicy</span>
+                    <span class="arrow">↗</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article
+            class="food-card"
+            data-category="main"
+            data-name="Chicken Biryani"
+            onclick="openFood(
+                'Chicken Biryani',
+                '🍗',
+                '₹160',
+                'Fragrant basmati rice layered with tender chicken and aromatic Indian spices.',
+                '🍗 Non-Veg',
+                '🌶 Spicy',
+                'https://images.unsplash.com/photo-1563379091339-03246963d51a?auto=format&fit=crop&w=900&q=85'
+            )"
+        >
+
+            <div class="food-image">
+                <img src="https://images.unsplash.com/photo-1563379091339-03246963d51a?auto=format&fit=crop&w=900&q=85" alt="Chicken Biryani">
+                <span class="nonveg-dot"></span>
+            </div>
+
+            <div class="food-content">
+
+                <div class="food-top">
+                    <span class="food-category">MAIN COURSE</span>
                     <strong>₹160</strong>
                 </div>
 
+                <h3>Chicken Biryani</h3>
+
+                <p>
+                    Fragrant rice with tender chicken
+                </p>
+
+                <div class="food-bottom">
+                    <span>🍗 Non-Veg</span>
+                    <span>🌶 Spicy</span>
+                    <span class="arrow">↗</span>
+                </div>
+
             </div>
-        </div>
+
+        </article>
 
 
-        <div class="category">
-            <h3>🍳 Breakfast</h3>
+        <article
+            class="food-card"
+            data-category="breakfast"
+            data-name="Masala Dosa"
+            onclick="openFood(
+                'Masala Dosa',
+                '🥞',
+                '₹80',
+                'Crispy South Indian dosa served with a warm spiced potato filling.',
+                '🌱 Vegetarian',
+                '🌶 Medium',
+                'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85'
+            )"
+        >
 
-            <div class="menu-container">
+            <div class="food-image">
+                <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85" alt="Masala Dosa">
+                <span class="veg-dot"></span>
+            </div>
 
-                <div class="card">
-                    <div class="food-info">
-                        <h4>Masala Dosa</h4>
-                        <p>🌱 Veg • 🌶 Medium</p>
-                        <span class="available">Available</span>
-                    </div>
+            <div class="food-content">
+
+                <div class="food-top">
+                    <span class="food-category">BREAKFAST</span>
                     <strong>₹80</strong>
                 </div>
 
-                <div class="card">
-                    <div class="food-info">
-                        <h4>Idli Sambar</h4>
-                        <p>🌱 Veg • 🌶 Mild</p>
-                        <span class="available">Available</span>
-                    </div>
+                <h3>Masala Dosa</h3>
+
+                <p>
+                    Crispy dosa with spiced potato filling
+                </p>
+
+                <div class="food-bottom">
+                    <span>🌱 Veg</span>
+                    <span>🌶 Medium</span>
+                    <span class="arrow">↗</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <article
+            class="food-card"
+            data-category="breakfast"
+            data-name="Idli Sambar"
+            onclick="openFood(
+                'Idli Sambar',
+                '🍘',
+                '₹60',
+                'Soft steamed idlis served with warm, flavorful sambar and chutney.',
+                '🌱 Vegetarian',
+                '🌶 Mild',
+                'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85'
+            )"
+        >
+
+            <div class="food-image">
+                <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=900&q=85" alt="Idli">
+                <span class="veg-dot"></span>
+            </div>
+
+            <div class="food-content">
+
+                <div class="food-top">
+                    <span class="food-category">BREAKFAST</span>
                     <strong>₹60</strong>
                 </div>
 
+                <h3>Idli Sambar</h3>
+
+                <p>
+                    Soft idli with warm South Indian sambar
+                </p>
+
+                <div class="food-bottom">
+                    <span>🌱 Veg</span>
+                    <span>🌶 Mild</span>
+                    <span class="arrow">↗</span>
+                </div>
+
             </div>
-        </div>
+
+        </article>
 
 
-        <div class="category">
-            <h3>🥤 Beverages</h3>
+        <article
+            class="food-card"
+            data-category="drinks"
+            data-name="Tea"
+            onclick="openFood(
+                'Tea',
+                '☕',
+                '₹20',
+                'A warm cup of freshly brewed Indian tea, perfect for a quick break between lectures.',
+                '🌱 Vegetarian',
+                'No Spice',
+                'https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=900&q=85'
+            )"
+        >
 
-            <div class="menu-container">
+            <div class="food-image">
+                <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=900&q=85" alt="Tea">
+                <span class="veg-dot"></span>
+            </div>
 
-                <div class="card">
-                    <div class="food-info">
-                        <h4>Tea</h4>
-                        <p>🌱 Veg • No Spice</p>
-                        <span class="available">Available</span>
-                    </div>
+            <div class="food-content">
+
+                <div class="food-top">
+                    <span class="food-category">DRINK</span>
                     <strong>₹20</strong>
                 </div>
 
-                <div class="card unavailable">
-                    <div class="food-info">
-                        <h4>Cold Coffee</h4>
-                        <p>🌱 Veg • No Spice</p>
-                        <span class="not-available">Unavailable</span>
-                    </div>
-                    <strong>₹70</strong>
+                <h3>Tea</h3>
+
+                <p>
+                    Freshly brewed warm Indian tea
+                </p>
+
+                <div class="food-bottom">
+                    <span>🌱 Veg</span>
+                    <span>No Spice</span>
+                    <span class="arrow">↗</span>
                 </div>
 
             </div>
+
+        </article>
+
+
+        <article
+            class="food-card unavailable-card"
+            data-category="drinks"
+            data-name="Cold Coffee"
+            onclick="openFood(
+                'Cold Coffee',
+                '🥤',
+                '₹70',
+                'A chilled creamy coffee drink. Currently unavailable at Symbieat.',
+                '🌱 Vegetarian',
+                'No Spice',
+                'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=85'
+            )"
+        >
+
+            <div class="food-image">
+                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=85" alt="Cold Coffee">
+                <span class="veg-dot"></span>
+                <span class="unavailable-label">Unavailable</span>
+            </div>
+
+            <div class="food-content">
+
+                <div class="food-top">
+                    <span class="food-category">DRINK</span>
+                    <strong>₹70</strong>
+                </div>
+
+                <h3>Cold Coffee</h3>
+
+                <p>
+                    Chilled creamy coffee
+                </p>
+
+                <div class="food-bottom">
+                    <span>🌱 Veg</span>
+                    <span>Currently unavailable</span>
+                    <span class="arrow">↗</span>
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<section class="quote-section">
+
+    <div class="quote-mark">“</div>
+
+    <h2>
+        Food tastes better
+        <span>when shared.</span>
+    </h2>
+
+    <p>
+        Your campus. Your people. Your food.
+    </p>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-logo">
+        🍴 <strong>Symbieat</strong>
+    </div>
+
+    <p>Fresh food, happy students.</p>
+
+    <span>Symbiosis Canteen • Pune</span>
+
+</footer>
+
+
+<div class="modal" id="foodModal">
+
+    <div class="modal-backdrop" onclick="closeFood()"></div>
+
+    <div class="food-modal">
+
+        <button class="close-btn" onclick="closeFood()">×</button>
+
+        <div class="modal-image">
+            <img id="modalImage" src="" alt="">
         </div>
 
-    </section>
+        <div class="modal-info">
 
-    <footer>
-        <h3>Symbieat 🍴</h3>
-        <p>Symbiosis Canteen</p>
-        <p>Fresh food, happy students!</p>
-    </footer>
+            <span class="modal-icon" id="modalIcon"></span>
+
+            <div class="modal-category">
+                SYMBIEAT MENU
+            </div>
+
+            <h2 id="modalName"></h2>
+
+            <div class="modal-price" id="modalPrice"></div>
+
+            <p id="modalDescription"></p>
+
+            <div class="modal-tags">
+
+                <span id="modalType"></span>
+
+                <span id="modalSpice"></span>
+
+            </div>
+
+            <button class="order-btn" onclick="showOrderMessage()">
+                Add to favourites ♥
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function openFood(name, icon, price, description, type, spice, image) {
+
+    document.getElementById("modalName").textContent = name;
+    document.getElementById("modalIcon").textContent = icon;
+    document.getElementById("modalPrice").textContent = price;
+    document.getElementById("modalDescription").textContent = description;
+    document.getElementById("modalType").textContent = type;
+    document.getElementById("modalSpice").textContent = spice;
+    document.getElementById("modalImage").src = image;
+
+    document.getElementById("foodModal").classList.add("show");
+
+    document.body.classList.add("modal-open");
+}
+
+
+function closeFood() {
+
+    document.getElementById("foodModal").classList.remove("show");
+
+    document.body.classList.remove("modal-open");
+}
+
+
+document.addEventListener("keydown", function(event) {
+
+    if (event.key === "Escape") {
+        closeFood();
+    }
+
+});
+
+
+function searchFood() {
+
+    const search = document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+    const cards = document.querySelectorAll(".food-card");
+
+    cards.forEach(card => {
+
+        const name = card.dataset.name.toLowerCase();
+
+        if (name.includes(search)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+
+    });
+
+}
+
+
+function filterCategory(category, button) {
+
+    document
+        .querySelectorAll(".category-btn")
+        .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    document
+        .querySelectorAll(".food-card")
+        .forEach(card => {
+
+            if (
+                category === "all" ||
+                card.dataset.category === category
+            ) {
+
+                card.style.display = "";
+
+                setTimeout(() => {
+                    card.classList.add("visible");
+                }, 10);
+
+            } else {
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+}
+
+
+function showInfo() {
+
+    alert(
+        "Symbieat brings together affordable, diverse and delicious food options for Symbiosis students."
+    );
+
+}
+
+
+function showOrderMessage() {
+
+    alert(
+        "❤️ Added to your favourites!"
+    );
+
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    document
+        .querySelectorAll(".food-card")
+        .forEach((card, index) => {
+
+            setTimeout(() => {
+                card.classList.add("visible");
+            }, index * 90);
+
+        });
+
+});
+
+</script>
 
 </body>
 </html>
